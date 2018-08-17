@@ -1,4 +1,6 @@
-if(!core){ var core = {}; }
+if (typeof core === 'undefined') {
+  var core = {};
+}
 
 //Provides basic templating for strings
 String.prototype.format = function () {
@@ -16,7 +18,7 @@ var yuiOptions = {
   combine: true
 };
 
-YUI(yuiOptions).use('node', 'cookie', "event-resize", "transition", "event", function (Y) {
+YUI(yuiOptions).use('node', "event-resize", "transition", "event", function (Y) {
   core.setupAccordion = function() {
     Y.all('.row-project li').each(function(node) {
       node.one('h3').append('<span></span>');
@@ -26,32 +28,6 @@ YUI(yuiOptions).use('node', 'cookie', "event-resize", "transition", "event", fun
         this.next('div').toggleClass('active');
       });
     });
-  };
-
-  core.cookiePolicy = function() {
-    function open() {
-      YUI(yuiOptions).use('node', function(Y) {
-        Y.one('body').prepend('<div class="cookie-policy"><div class="wrapper"><a href="?cp=close" class="link-cta">Close</a><p>We use cookies to improve your experience. By your continued use of this site you accept such use. To change your settings please <a href="/privacy-policy#cookies">see our policy</a>.</p></div></div>');
-        Y.one('.cookie-policy .link-cta').on('click',function(e){
-          e.preventDefault();
-          close();
-        });
-      });
-    }
-    function close() {
-      YUI(yuiOptions).use('node', function(Y) {
-        Y.one('.cookie-policy').setStyle('display','none');
-        setCookie();
-      });
-    }
-    function setCookie() {
-      YUI(yuiOptions).use('cookie', function (Y) {
-        Y.Cookie.set("_cookies_accepted", "true", { expires: new Date("January 12, 2025") });
-      });
-    }
-    if(Y.Cookie.get("_cookies_accepted") != 'true'){
-      open();
-    }
   };
 
   core.rssLoader = {
@@ -116,5 +92,4 @@ YUI(yuiOptions).use('node', 'cookie', "event-resize", "transition", "event", fun
   }
 
   core.setupAccordion();
-  core.cookiePolicy();
 });

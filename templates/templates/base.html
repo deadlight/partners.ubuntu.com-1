@@ -27,6 +27,8 @@
 <link rel="stylesheet" type="text/css" media="screen" href="{% versioned_static 'css/styles.css' %}" />
 <link rel="stylesheet" type="text/css" media="print" href="{% versioned_static 'css/core-print.css' %}" />
 
+<link rel="stylesheet" type="text/css" media="print" href="{{ STATIC_URL }}cookie-policy/build/css/cookie-policy.css" />
+
 <link type="text/plain" rel="author" href="{% versioned_static 'files/humans.txt' %}" />
 
 {% block head_extra %}{% endblock %}
@@ -112,6 +114,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script>canonicalGlobalNav.createNav({
   maxWidth: '64.875rem'
 });</script>
+
+<script src="{{ STATIC_URL }}cookie-policy/build/js/cookie-policy.js"></script>
+<script>
+  ubuntu.cookiePolicy.setup({
+    'content': 'We use cookies to improve your experience. By your continued use of this site you accept such use.<br /> This notice will disappear by itself. To change your settings please <a href="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy#cookies">see our policy</a>.',
+    'duration': 3000
+  });
+</script>
 
 
 {% block footer_extra %}{% endblock %}
